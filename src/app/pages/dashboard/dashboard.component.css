@@ -1,0 +1,54 @@
+.dashboard-container {
+  padding: 2rem;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #87cefa, #f0f8ff);
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.dashboard-container input {
+  padding: 0.75rem;
+  margin: 1rem 0;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+.dashboard-container button {
+  padding: 0.75rem 1.5rem;
+  background: #ffcc00;
+  color: #003366;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.dashboard-container button:hover {
+  background: #ffdb4d;
+}
+.dashboard-container .error {
+  color: #ff4d4d;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+.dashboard-container h1 {
+  margin-bottom: 1rem;
+  color: #003366;
+  font-size: 2.5rem;
+}
+.dashboard-container h2 {
+  margin-top: 2rem;
+  color: #003366;
+}
+.dashboard-container p {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+.dashboard-container div[ngIf=weather] {
+  margin-top: 2rem;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: inline-block;
+}/*# sourceMappingURL=dashboard.component.css.map */

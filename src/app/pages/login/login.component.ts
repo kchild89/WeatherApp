@@ -14,9 +14,7 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService) {
-    console.log('✅ LoginComponent loaded');
-  }
+  constructor(private authService: AuthService) {}
 
   onLoginEmail() {
     this.authService

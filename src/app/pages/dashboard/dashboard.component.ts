@@ -21,9 +21,10 @@ export class DashboardComponent {
   getWeather() {
     this.loading = true;
     this.error = '';
+    this.weather = null;
 
-    const apiKey = '6696a96d162d4bff8a4155027252204';
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.city}&appid=${apiKey}&units=metric`;
+    const apiKey = 'd93585013b7a4dd1b6c145210252904';
+    const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${this.city}&aqi=no`;
 
     this.http.get(url).subscribe({
       next: (data) => {
@@ -36,25 +37,15 @@ export class DashboardComponent {
       },
     });
   }
+
   getWeatherEmoji(condition: string): string {
-    switch (condition.toLowerCase()) {
-      case 'clear':
-        return '☀️';
-      case 'clouds':
-        return '☁️';
-      case 'rain':
-        return '🌧️';
-      case 'drizzle':
-        return '🌦️';
-      case 'thunderstorm':
-        return '⛈️';
-      case 'snow':
-        return '❄️';
-      case 'mist':
-      case 'fog':
-        return '🌫️';
-      default:
-        return '🌈';
-    }
+    const text = condition.toLowerCase();
+    if (text.includes('sunny')) return '☀️';
+    if (text.includes('cloud')) return '☁️';
+    if (text.includes('rain')) return '🌧️';
+    if (text.includes('snow')) return '❄️';
+    if (text.includes('storm')) return '⛈️';
+    if (text.includes('fog') || text.includes('mist')) return '🌫️';
+    return '🌈';
   }
 }

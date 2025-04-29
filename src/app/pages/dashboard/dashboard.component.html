@@ -6,17 +6,16 @@
   <button (click)="getWeather()">Get Weather</button>
 
   <div *ngIf="loading">Loading...</div>
-
   <div *ngIf="error" class="error">{{ error }}</div>
 
   <div *ngIf="weather">
     <h2>
-      Weather in {{ weather.name }}
-      <span>{{ getWeatherEmoji(weather.weather[0].main) }}</span>
+      Weather in {{ weather.location.name }}
+      <span>{{ getWeatherEmoji(weather.current.condition.text) }}</span>
     </h2>
-    <p>Temperature: {{ weather.main.temp }}°C</p>
-    <p>Condition: {{ weather.weather[0].description }}</p>
-    <p>Humidity: {{ weather.main.humidity }}%</p>
-    <p>Wind Speed: {{ weather.wind.speed }} m/s</p>
+    <p>Temperature: {{ weather.current.temp_c }}°C</p>
+    <p>Condition: {{ weather.current.condition.text }}</p>
+    <p>Humidity: {{ weather.current.humidity }}%</p>
+    <p>Wind Speed: {{ weather.current.wind_kph }} kph</p>
   </div>
 </div>

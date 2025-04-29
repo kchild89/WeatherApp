@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   firebase: {
     apiKey: 'AIzaSyB0IU_X7blShIsNY6UT_Z1FdIrReaYX41c',
     authDomain: 'weatherapp-2098c.firebaseapp.com',

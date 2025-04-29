@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -14,13 +15,14 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onLoginEmail() {
     this.authService
       .loginWithEmail(this.email, this.password)
       .then(() => {
         console.log('Login successful');
+        this.router.navigate(['/dashboard']);
       })
       .catch((error) => {
         console.error('Login failed', error);
@@ -32,6 +34,7 @@ export class LoginComponent {
       .loginWithGoogle()
       .then(() => {
         console.log('Login successful');
+        this.router.navigate(['/dashboard']);
       })
       .catch((error) => {
         console.error('Login failed', error);

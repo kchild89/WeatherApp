@@ -1,8 +1,15 @@
 <nav class="top-nav">
   <div class="logo">WeatherApp</div>
+
   <div class="nav-links">
-    <a routerLink="/dashboard">Dashboard</a>
-    <a routerLink="/profile">Profile</a>
     <a routerLink="/about">About</a>
+
+    <ng-container *ngIf="isLoggedIn">
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/profile">Profile</a>
+      <button (click)="logout()">Logout</button>
+    </ng-container>
+
+    <a *ngIf="!isLoggedIn" routerLink="/login">Login</a>
   </div>
 </nav>

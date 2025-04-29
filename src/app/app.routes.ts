@@ -1,13 +1,36 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { AboutComponent } from './pages/about/about.component';
+import { authGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'about', component: AboutComponent },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./pages/login/login.component').then((m) => m.LoginComponent),
+  },
+  {
+    path: 'dashboard',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./pages/dashboard/dashboard.component').then(
+        (m) => m.DashboardComponent
+      ),
+  },
+  {
+    path: 'profile',
+    canActivate: [authGuard], // 🔐 protect it
+    loadComponent: () =>
+      import('./pages/profile/profile.component').then(
+        (m) => m.ProfileComponent
+      ),
+  },
+  {
+    path: 'about',
+    loadComponent: () =>
+      import('./pages/about/about.component').then((m) => m.AboutComponent),
+  },
 ];

@@ -1,19 +1,57 @@
 .profile-container {
+  max-width: 600px;
+  margin: 4rem auto;
   padding: 2rem;
-  background: aliceblue;
-  max-width: 400px;
-  margin: 2rem auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.user-info {
+  flex: 1;
 
   h2 {
-    margin-bottom: 1rem;
-    color: #3f51b5;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.8rem;
   }
 
-  p {
-    margin: 0.5rem 0;
-    color: #333;
+  .label {
+    font-weight: bold;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
   }
+
+  .value {
+    font-size: 1rem;
+    margin: 0;
+
+    &.small {
+      font-size: 0.8rem;
+      color: #999;
+      word-break: break-all;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
 }

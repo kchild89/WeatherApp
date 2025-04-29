@@ -1,4 +1,8 @@
-import { Injectable } from '@angular/core';
+import {
+  EnvironmentInjector,
+  Injectable,
+  runInInjectionContext,
+} from '@angular/core';
 import {
   Auth,
   signInWithEmailAndPassword,
@@ -6,6 +10,7 @@ import {
   GoogleAuthProvider,
   signOut,
   UserCredential,
+  createUserWithEmailAndPassword,
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
@@ -13,16 +18,37 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private auth: Auth, private router: Router) {}
+  constructor(
+    private auth: Auth,
+    private router: Router,
+    private injector: EnvironmentInjector
+  ) {}
 
   loginWithEmail(email: string, password: string): Promise<UserCredential> {
-    return signInWithEmailAndPassword(this.auth, email, password);
+    return runInInjectionContext(this.injector, async () => {
+      return signInWithEmailAndPassword(this.auth, email, password);
+    });
   }
   loginWithGoogle(): Promise<UserCredential> {
-    const provider = new GoogleAuthProvider();
-    return signInWithPopup(this.auth, provider);
+    return runInInjectionContext(this.injector, async () => {
+      const provider = new GoogleAuthProvider();
+      return signInWithPopup(this.auth, provider);
+    });
+  }
+  signupWithEmail(email: string, password: string): Promise<UserCredential> {
+    return runInInjectionContext(this.injector, async () => {
+      return createUserWithEmailAndPassword(this.auth, email, password);
+    });
+  }
+  signupWithGoogle(): Promise<UserCredential> {
+    return runInInjectionContext(this.injector, async () => {
+      const provider = new GoogleAuthProvider();
+      return signInWithPopup(this.auth, provider);
+    });
   }
   logout(): Promise<void> {
-    return signOut(this.auth);
+    return runInInjectionContext(this.injector, async () => {
+      return signOut(this.auth);
+    });
   }
 }

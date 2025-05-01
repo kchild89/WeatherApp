@@ -1,19 +1,23 @@
-<div class="profile-container" *ngIf="user">
-  <div class="profile-header">
-    <img
-      [src]="user.photoURL || 'https://via.placeholder.com/100'"
-      alt="Profile Photo"
-      class="avatar"
-    />
-    <div class="user-info">
-      <h2>{{ user.displayName || "Anonymous" }}</h2>
-      <p class="label">Email:</p>
-      <p class="value">{{ user.email || "No Email" }}</p>
+<div class="main-container">
+  <div class="profile-container" *ngIf="user">
+    <div class="profile-header">
+      <img
+        [src]="user.photoURL || 'https://via.placeholder.com/100'"
+        alt="Profile Photo"
+        class="avatar"
+      />
+      <div class="user-info">
+        <h2>{{ user.displayName || "Anonymous" }}</h2>
+        <p class="label">Email:</p>
+        <p class="value">{{ user.email || "No Email" }}</p>
+      </div>
     </div>
-  </div>
 
-  <div class="actions">
-    <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+    <div class="actions">
+      <button mat-raised-button color="primary" (click)="logout()">
+        Logout
+      </button>
+    </div>
   </div>
 
   <form

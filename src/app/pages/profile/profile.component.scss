@@ -1,8 +1,14 @@
+.main-container {
+  background: linear-gradient(to bottom, #87cefa, #f0f8ff);
+  min-height: 100vh;
+  padding-top: 64px;
+}
+
 .profile-container {
   max-width: 600px;
   margin: 4rem auto;
   padding: 2rem;
-  background-color: #fff;
+  background: #fff;
   border-radius: 12px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   display: flex;

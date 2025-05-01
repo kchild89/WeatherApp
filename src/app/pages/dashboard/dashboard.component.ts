@@ -3,6 +3,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../../../environments/environment';
+import { UserService } from '../../services/user.service';
+import { tap } from 'rxjs';
+import { UserSettings } from '../../interfaces/user-settings';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +21,16 @@ export class DashboardComponent {
   error: string = '';
   suggestions: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  units: string = 'metric';
+
+  constructor(private http: HttpClient, private userService: UserService) {
+    this.userService.getUserSettings().subscribe((settings) => {
+      const data = settings?.data() as UserSettings | undefined;
+      if (data && (data.units === 'metric' || data.units === 'imperial')) {
+        this.units = data.units;
+      }
+    });
+  }
 
   getWeather() {
     this.loading = true;

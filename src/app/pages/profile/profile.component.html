@@ -13,27 +13,25 @@
       </div>
     </div>
 
-    <div class="actions">
-      <button mat-raised-button color="primary" (click)="logout()">
-        Logout
-      </button>
-    </div>
+    <form
+      class="settings-container"
+      [formGroup]="form"
+      (ngSubmit)="updateSettings()"
+    >
+      <mat-form-field appearance="fill">
+        <mat-label>Units</mat-label>
+        <mat-select formControlName="units">
+          <mat-option value="imperial">Imperial</mat-option>
+          <mat-option value="metric">Metric</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="settings-actions">
+        <button mat-stroked-button type="submit">Update Settings</button>
+        <button mat-raised-button color="primary" (click)="logout()">
+          Logout
+        </button>
+      </div>
+    </form>
   </div>
-
-  <form
-    class="settings-container"
-    [formGroup]="form"
-    (ngSubmit)="updateSettings()"
-  >
-    <mat-form-field>
-      <mat-label>Units</mat-label>
-      <mat-select formControlName="units">
-        <mat-option value="imperial">Imperial</mat-option>
-        <mat-option value="metric">Metric</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <button mat-button type="submit">Update Settings</button>
-  </form>
-  <!-- testing: {{ userSettings$ | async | json }} -->
 </div>

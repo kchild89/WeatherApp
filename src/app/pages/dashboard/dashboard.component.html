@@ -30,9 +30,21 @@
       Weather in {{ weather.location.name }}
       <span>{{ getWeatherEmoji(weather.current.condition.text) }}</span>
     </h2>
-    <p>Temperature: {{ weather.current.temp_c }}°C</p>
+    <p>
+      Temperature:
+      <span *ngIf="units === 'metric'">{{ weather.current.temp_c }}°C</span>
+      <span *ngIf="units === 'imperial'">{{ weather.current.temp_f }}°F</span>
+    </p>
     <p>Condition: {{ weather.current.condition.text }}</p>
     <p>Humidity: {{ weather.current.humidity }}%</p>
-    <p>Wind Speed: {{ weather.current.wind_kph }} kph</p>
+    <p>
+      Wind Speed:
+      <span *ngIf="units === 'metric'"
+        >{{ weather.current.wind_kph }} km/h</span
+      >
+      <span *ngIf="units === 'imperial'"
+        >{{ weather.current.wind_mph }} mph</span
+      >
+    </p>
   </div>
 </div>

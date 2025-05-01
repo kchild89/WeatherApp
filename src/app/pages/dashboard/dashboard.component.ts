@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import e from 'express';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -17,6 +16,7 @@ export class DashboardComponent {
   weather: any = null;
   loading: boolean = false;
   error: string = '';
+  suggestions: any[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -24,6 +24,7 @@ export class DashboardComponent {
     this.loading = true;
     this.error = '';
     this.weather = null;
+    this.suggestions = [];
 
     const apiKey = environment.weatherApiKey;
     const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${this.city}&aqi=no`;
@@ -38,6 +39,31 @@ export class DashboardComponent {
         this.loading = false;
       },
     });
+  }
+
+  fetchSuggestions() {
+    if (this.city.length < 2) {
+      this.suggestions = [];
+      return;
+    }
+
+    const apiKey = environment.weatherApiKey;
+    const url = `https://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${this.city}`;
+
+    this.http.get<any[]>(url).subscribe({
+      next: (data) => {
+        this.suggestions = data;
+      },
+      error: () => {
+        this.suggestions = [];
+      },
+    });
+  }
+
+  selectSuggestion(suggestion: any) {
+    this.city = suggestion.name;
+    this.suggestions = [];
+    this.getWeather(); // Optional: auto-fetch on selection
   }
 
   getWeatherEmoji(condition: string): string {

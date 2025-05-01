@@ -8,13 +8,14 @@ import {
   collection,
   CollectionReference,
   doc,
+  DocumentSnapshot,
   Firestore,
   getDoc,
   setDoc,
 } from '@angular/fire/firestore';
 import { UserSettings } from '../interfaces/user-settings';
 import { Auth } from '@angular/fire/auth';
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,7 @@ export class UserService {
 
   constructor() {}
 
-  getUserSettings() {
+  getUserSettings(): Observable<DocumentSnapshot | null> {
     return runInInjectionContext(this.injector, () => {
       const user = this.auth.currentUser;
       if (user) {

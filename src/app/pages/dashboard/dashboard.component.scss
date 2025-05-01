@@ -6,13 +6,45 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
 
-  input {
-    padding: 0.75rem;
-    margin: 1rem 0 0 0;
-    width: 250px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
+  .search-container {
+    position: relative;
+    display: inline-block;
+
+    input {
+      padding: 0.75rem;
+      margin: 1rem 0 0 0;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .suggestions-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      background: white;
+      border-radius: 0 0 8px 8px;
+      z-index: 1000;
+      text-align: left;
+
+      li {
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: background 0.2s ease;
+
+        &:hover {
+          background: #eee;
+        }
+      }
+    }
   }
 
   button {
@@ -59,32 +91,5 @@
     padding: 1.5rem;
     border-radius: 12px;
     display: inline-block;
-  }
-
-  .suggestions-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    left: 45.4%;
-    transform: translateX(-50%);
-    width: 271px;
-    max-height: 200px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    background: white;
-    border-radius: 0 0 8px 8px;
-    z-index: 1000;
-    text-align: left;
-
-    li {
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      transition: background 0.2s ease;
-
-      &:hover {
-        background: #eee;
-      }
-    }
   }
 }

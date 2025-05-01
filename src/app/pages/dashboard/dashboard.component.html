@@ -2,21 +2,23 @@
   <h1>Weather Dashboard</h1>
   <p>Enter a city to see the current weather</p>
 
-  <input
-    type="text"
-    [(ngModel)]="city"
-    (input)="fetchSuggestions()"
-    placeholder="Enter city name"
-  />
+  <div class="search-container">
+    <input
+      type="text"
+      [(ngModel)]="city"
+      (input)="fetchSuggestions()"
+      placeholder="Enter city name"
+    />
 
-  <ul *ngIf="suggestions.length" class="suggestions-list">
-    <li
-      *ngFor="let suggestion of suggestions"
-      (click)="selectSuggestion(suggestion)"
-    >
-      {{ suggestion.name }}, {{ suggestion.country }}
-    </li>
-  </ul>
+    <ul *ngIf="suggestions.length" class="suggestions-list">
+      <li
+        *ngFor="let suggestion of suggestions"
+        (click)="selectSuggestion(suggestion)"
+      >
+        {{ suggestion.name }}, {{ suggestion.country }}
+      </li>
+    </ul>
+  </div>
 
   <button (click)="getWeather()">Get Weather</button>
 

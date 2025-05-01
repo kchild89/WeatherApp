@@ -8,4 +8,5 @@ export const environment = {
     messagingSenderId: '450331467319',
     appId: '1:450331467319:web:5367588421795cb3bca9b2',
   },
+  weatherApiKey: 'd93585013b7a4dd1b6c145210252904',
 };

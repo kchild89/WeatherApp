@@ -2,25 +2,29 @@
   <h1>Weather Dashboard</h1>
   <p>Enter a city to see the current weather</p>
 
-  <div class="search-container">
-    <input
-      type="text"
-      [(ngModel)]="city"
-      (input)="fetchSuggestions()"
-      placeholder="Enter city name"
-    />
+  <form (ngSubmit)="getWeather()" #weatherForm="ngForm">
+    <div class="search-container">
+      <input
+        type="text"
+        name="city"
+        [(ngModel)]="city"
+        (input)="fetchSuggestions()"
+        placeholder="Enter city name"
+        required
+      />
 
-    <ul *ngIf="suggestions.length" class="suggestions-list">
-      <li
-        *ngFor="let suggestion of suggestions"
-        (click)="selectSuggestion(suggestion)"
-      >
-        {{ suggestion.name }}, {{ suggestion.country }}
-      </li>
-    </ul>
-  </div>
+      <ul *ngIf="suggestions.length" class="suggestions-list">
+        <li
+          *ngFor="let suggestion of suggestions"
+          (click)="selectSuggestion(suggestion)"
+        >
+          {{ suggestion.name }}, {{ suggestion.country }}
+        </li>
+      </ul>
+    </div>
 
-  <button (click)="getWeather()">Get Weather</button>
+    <button type="submit">Get Weather</button>
+  </form>
 
   <div *ngIf="loading">Loading...</div>
   <div *ngIf="error" class="error">{{ error }}</div>

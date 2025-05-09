@@ -1,6 +1,7 @@
 {
   "projects": {
-    "weather-app": "weather-app-6ca51"
+    "weather-app": "weather-app-6ca51",
+    "default": "weather-app-6ca51"
   },
   "targets": {},
   "etags": {}
